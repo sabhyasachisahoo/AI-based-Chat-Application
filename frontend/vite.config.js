@@ -6,6 +6,10 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(),tailwindcss()],
+  define: {
+    'process.env': {},        // Fix for "process is not defined"
+    global: 'window',         // Fix for some Node libs expecting global
+  },
   server:{
     headers: {
       "Cross-Origin-Embedder-Policy":"require-corp",
