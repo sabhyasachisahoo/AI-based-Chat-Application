@@ -1,0 +1,24 @@
+receiveMessage('project-message', data => {
+      console.log(data);
+    
+      let message;
+    
+      // Ensure message is a string
+      if (typeof data.message === 'string') {
+        try {
+          message = JSON.parse(data.message); // Try parsing if it's a JSON string
+        } catch (error) {
+          message = data.message; // Keep it as a string if it's not JSON
+        }
+      } else {
+        message = data.message; // Use the message as is if it's already an object
+      }
+    
+      console.log("Processed message:", message);
+    
+      // Ensure `message` is a string before setting state
+      setMessages(prevMessages => [
+        ...prevMessages,
+        { sender: data.sender, message: typeof message === "object" ? JSON.stringify(message) : message }
+      ]);
+    });

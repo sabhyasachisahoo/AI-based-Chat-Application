@@ -1,0 +1,11 @@
+receiveMessage('project-message',data => {
+      console.log(data)
+      const message = JSON.parse(data.message)
+      console.log(message)
+      webContainer?.mount(message.fileTree)
+      if(message.fileTree) {
+        setFileTree(message.fileTree)
+      }
+      setMessages(prevMessages => [ ...prevMessages, data ]) // Update messages state
+    })
+    
