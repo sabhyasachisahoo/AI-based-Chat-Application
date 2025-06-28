@@ -406,9 +406,20 @@ const Project = () => {
                 disabled={!webContainer}
                 onClick={async () => {
                   if (!webContainer) {
-                    console.warn("WebContainer is not ready yet");
-                    alert("Please wait for the environment to load.");
-                    return;
+                    getWebContainer()
+                      .then((container) => {
+                        setWebContainer(container);
+                        console.log("WebContainer initialized.");
+                      })
+                      .catch((err) => {
+                        console.error(
+                          "WebContainer failed to initialize:",
+                          err
+                        );
+                        alert(
+                          "⚠️ Run is disabled because WebContainers are not supported in this browser or deployment."
+                        );
+                      });
                   }
 
                   try {
