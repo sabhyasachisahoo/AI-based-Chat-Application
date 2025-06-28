@@ -86,24 +86,53 @@ const Project = () => {
     setMessage("")
   }
 
-  function WriteAiMessage(message) {
+//   function WriteAiMessage(message) {
 
-    const messageObject = JSON.parse(message)
+//     const messageObject = JSON.parse(message)
+
+//     return (
+//         <div
+//             className='overflow-auto bg-slate-950 text-white rounded-sm p-2' style={{padding: "8px"}}
+//         >
+//             <Markdown
+//                 children={messageObject.text}
+//                 options={{
+//                     overrides: {
+//                         code: SyntaxHighlightedCode,
+//                     },
+//                 }}
+//             />
+//         </div>)
+// }
+function WriteAiMessage(message) {
+    let messageText = message;
+
+    // Try to parse only if message looks like JSON
+    try {
+        const parsed = JSON.parse(message);
+        if (parsed?.text) {
+            messageText = parsed.text;
+        }
+    } catch (e) {
+        // Not JSON, so keep as is
+        console.warn("Could not parse AI message as JSON:", message);
+    }
 
     return (
-        <div
-            className='overflow-auto bg-slate-950 text-white rounded-sm p-2' style={{padding: "8px"}}
-        >
+        <div className='overflow-auto bg-slate-950 text-white rounded-sm p-2'>
             <Markdown
-                children={messageObject.text}
                 options={{
                     overrides: {
                         code: SyntaxHighlightedCode,
                     },
                 }}
-            />
-        </div>)
+            >
+                {messageText}
+            </Markdown>
+        </div>
+    );
 }
+
 
 
   useEffect(() => {
