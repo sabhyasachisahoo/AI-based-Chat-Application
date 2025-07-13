@@ -8,7 +8,7 @@ Live At - https://ai-based-chat-application-frontend.onrender.com/
 
 ### Core Features
 - **Real-time Chat**: Collaborate with team members in real-time with AI-powered assistance
-- **AI Code Generation**: Generate code using Google Gemini AI integration, chat to ai by prefixing your sentence with @AI. eg- @Ai Hey Ai.
+- **AI Code Generation**: Generate code using Google Gemini AI integration, chat to ai by prefixing your sentence with @ai. eg- @ai Hey Ai.
 - **Live Code Editor**: Edit code with syntax highlighting and real-time collaboration
 - **WebContainer Integration**: Run and test code directly in the browser
 - **File Management**: Create, edit, and manage multiple files with tabbed interface
